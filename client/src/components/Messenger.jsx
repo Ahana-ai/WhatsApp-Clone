@@ -1,6 +1,9 @@
 import React from "react";
 import LoginDialog from "./accounts/LoginDialog";
 import { AppBar, Toolbar, Box, styled } from "@mui/material";
+import { useContext } from "react";
+import { AccountContext } from "./context/AcountProvider";
+import ChatDialog from "./chat/ChatDialog";
 
 const Component = styled(Box)`
       height: 100vh;
@@ -8,23 +11,39 @@ const Component = styled(Box)`
       background: #dcdcdc;
   `;
 
-const Header = styled(AppBar)`
+const LoginHeader = styled(AppBar)`
   height: 220px;
-  background-color: #00A884;
+  background-color: #00a884;
+  box-shadow: none;
+`;
+
+const Header = styled(AppBar)`
+  height: 125px;
+  background-color: #00a884;
   box-shadow: none;
 `;
 
 const Messenger = () => {
+  const { account } = useContext(AccountContext);
 
   return (
-    // <>
     <Component>
-      <Header>
-        <Toolbar></Toolbar>
-      </Header>
-      <LoginDialog />
+      {account ? (
+        <>
+          <Header>
+            <Toolbar></Toolbar>
+          </Header>
+          <ChatDialog />
+        </>
+      ) : (
+        <>
+          <LoginHeader>
+            <Toolbar></Toolbar>
+          </LoginHeader>
+          <LoginDialog />
+        </>
+      )}
     </Component>
-    // </>
   );
 };
 

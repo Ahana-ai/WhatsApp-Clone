@@ -6,10 +6,10 @@ const AcountProvider = ({ children }) => {
     const [account, setAccount] = useState();
   return (
     <>
-        <AccountContext.Provider value={(
+        <AccountContext.Provider value={{
             account,
             setAccount
-        )}>
+        }}>
             {children}
         </AccountContext.Provider>
     </>
