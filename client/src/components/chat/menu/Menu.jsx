@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 // Components
+import Conversations from './Conversations';
 import Header from './Header';
 import Search from './Search';
 
@@ -10,6 +11,7 @@ const Menu = () => {
         <Box>
             <Header/>
             <Search/>
+            <Conversations/>
         </Box>
     </>
   )

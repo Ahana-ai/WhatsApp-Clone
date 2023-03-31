@@ -19,14 +19,14 @@ const HeaderMenu = ({ setOpenDrawer }) => {
 
   return (
     <>
-      <MoreVertOutlinedIcon onClick={handleClick} />
+      <MoreVertOutlinedIcon onClick={handleClick} style={{cursor: 'pointer  '}} />
 
       <Menu
         anchorEl={open}
         open={open}
         keepMounted
         onClose={handleClose}
-        getContentAnchorE1={null}
+        getcontentanchore1={null}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "center",

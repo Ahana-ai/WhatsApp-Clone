@@ -23,7 +23,7 @@ const Wrapper = styled(Box)`
         padding: 8px;
         color: #000;
     };
-    & :first-child {
+    & :first-of-type {
         font-size: 25px;
         margin-right: 8px;
         margin-top: 2px;
@@ -33,7 +33,8 @@ const Wrapper = styled(Box)`
 const Image = styled('img')({
     height: 40,
     width: 40,
-    borderRadius: '50%'
+    borderRadius: '50%',
+    cursor: 'pointer',
 });
 
 const Header = () => {
