@@ -2,11 +2,6 @@ import MoreVertOutlined from "@mui/icons-material/MoreVertOutlined"
 import SearchOutlined from "@mui/icons-material/SearchOutlined"
 import { Box, Typography, styled } from "@mui/material"
 
-import { useContext } from "react";
-
-//Components
-import { AccountContext } from "../../context/AcountProvider";
-
 const Header = styled(Box)`
     height: 44px;
     background: #ededed;
@@ -44,8 +39,6 @@ const Image = styled('img')({
 });
 
 const ChatHeader = ({ person }) => {
-    const { account } = useContext(AccountContext);
-
   return (
     <Header>
 

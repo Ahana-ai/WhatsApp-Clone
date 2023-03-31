@@ -39,6 +39,7 @@ const DescriptionContainer = styled(Box)`
 `;
 
 const Profile = () => {
+    //Calling the account that has been logged in using Context Api
     const { account } = useContext(AccountContext);
 
   return (

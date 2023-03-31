@@ -54,9 +54,8 @@ const LoginDialog = () => {
   const { setAccount } = useContext(AccountContext);
 
   const onLoginSuccess = (res) => {
+    //Decoding the google public credentials sent by the react-login-google api using jwt middlewares
     const decoded = jwt_decode(res.credential);
-    // console.log(res);
-    // console.log(decoded);
     setAccount(decoded);
     // Setting account for Api
     addUser(decoded);

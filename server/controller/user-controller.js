@@ -3,6 +3,10 @@ import user from "../models/user-model.js";
 class UserController {
     constructor() {};
 
+    /**
+     * @method addUser
+     * @description To check if the logging in user is already in the Db, if new, then add them or continue to chat
+     */
     async addUser (req, res) {
         try {
             let isUserExists = await user.findOne({ sub: req.body.sub });
@@ -20,6 +24,10 @@ class UserController {
         }
     };
 
+    /**
+     * @method getUser
+     * @description To fetch the user details from the db for furtther use
+     */
     async getUser (req, res) {
         try {
             let Users = await user.find({});

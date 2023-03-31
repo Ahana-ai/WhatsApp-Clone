@@ -21,6 +21,7 @@ const Image = styled('img')({
 const OneCoversation = ({ user }) => {
   const { setPerson, account } = useContext(AccountContext);
 
+  //Function to isolate different chats so that messages don't mix using setConversation post api
   const getChat = async () => {
     setPerson(user);
     await setConversation({ senderId: account.sub, revieverId: user.sub })

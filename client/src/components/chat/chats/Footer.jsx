@@ -18,7 +18,7 @@ const Container = styled(Box)`
 
 const SearchBox = styled(Box)`
     background-color: #ffffff;
-    border-radius: 18px;
+    border-radius: 10px;
     width: calc(95% - 100px);
 `;
 

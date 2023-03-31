@@ -45,12 +45,13 @@ const ChatDialog = () => {
       >
         {/* Parent Component */}
         <Component>
-            {/* Left Component */}
+            {/* Left child Component */}
             <LeftComponent>
                 <Menu/>
             </LeftComponent>
-            {/* Right Component */}
+            {/* Right child Component */}
             <RightComponent>
+              {/* To check if to view the chat or just the empty component */}
                 { Object.keys(person).length ? <ChatBox /> : <EmptyChat /> }
             </RightComponent>
         </Component>

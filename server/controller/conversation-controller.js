@@ -3,6 +3,10 @@ import Conversation from '../models/conversations-model.js'
 class ConversationController {
     constructor() {}
 
+    /**
+     * @method newConversation
+     * @description To check if a old conversation already exists, if not create a new one or else continue to chat
+     */
     async newConversation (req, res) {
         try {
             const senderId = req.body.senderId;

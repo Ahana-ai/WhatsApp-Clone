@@ -19,7 +19,7 @@ const StyledDivider = styled(Divider)`
 `;
 
 const Conversations = ({ text }) => {
-    //To store the users for all the conversation list
+    //To store the users for all the conversation list in an array format
     const [users, setUser] = useState([]);
 
     const { account } = useContext(AccountContext);
@@ -28,25 +28,25 @@ const Conversations = ({ text }) => {
         const fetchData = async () => {
             let res = await getUser();
             console.log(res, 'ressss');
+            //To filter data in the search box using Js functions
             let fiteredData = res.filter(user => user.name.toLowerCase().includes(text.toLowerCase()));
+            //Setting the conversation list to view after fetching it from the database using the api getUser
             setUser(fiteredData);
         }
         fetchData();
-    }, [text]);
+    }, [text]); //Changing the conversation list according to the input in search box
 
   return (
     <>
         <Component>
             {
+                // Viewing the conversation list according to the db
                 users.map((user) => (
                     user.sub !== account.sub &&
-                    // return(
                     <>
                         <OneCoversation user={user} />
                         <StyledDivider />
                     </>
-                    // )
-                    // return <div>convo</div>
                 ))
             }
         </Component>

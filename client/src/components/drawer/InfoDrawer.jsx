@@ -38,6 +38,7 @@ const InfoDrawer = ({open, setOpen}) => {
 
   return (
     <>
+    {/* The profile/Account details that pops right from the left side */}
       <Drawer
         open={open}
         onClose={toggleToClose}

@@ -9,6 +9,7 @@ const MenuOption = styled(MenuItem)`
 `;
 
 const HeaderMenu = ({ setOpenDrawer }) => {
+  //State to check the Menu opening in the header of left component
   const [open, setOpen] = useState(false);
   const handleClick = (event) => {
     setOpen(event.currentTarget);
@@ -44,7 +45,6 @@ const HeaderMenu = ({ setOpenDrawer }) => {
         >
           Profile
         </MenuOption>
-        <MenuOption onClick={handleClose}>My account</MenuOption>
         <MenuOption onClick={handleClose}>Logout</MenuOption>
       </Menu>
     </>

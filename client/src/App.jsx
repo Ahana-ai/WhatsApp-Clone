@@ -9,7 +9,9 @@ function App() {
   const clientId = '336935756296-ml2041v16nb3mcfm05vimnk8v6gbcv1o.apps.googleusercontent.com';
   
   return (
+    //Using the React-Login-Google Api
     <GoogleOAuthProvider clientId={clientId}>
+      {/* Wrapping the complete project in the Parent component using Context Api */}
       <AccountProvider>
         <Messenger/>
       </AccountProvider>

@@ -28,6 +28,7 @@ const Messenger = () => {
 
   return (
     <Component>
+      {/* To check if account is logged in to show the conversations or show the to-log-in window */}
       {account ? (
         <>
           <Header>
