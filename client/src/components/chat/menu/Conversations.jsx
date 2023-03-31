@@ -18,7 +18,7 @@ const StyledDivider = styled(Divider)`
     opacity: 0.6;
 `;
 
-const Conversations = () => {
+const Conversations = ({ text }) => {
     //To store the users for all the conversation list
     const [users, setUser] = useState([]);
 
@@ -28,10 +28,11 @@ const Conversations = () => {
         const fetchData = async () => {
             let res = await getUser();
             console.log(res, 'ressss');
-            setUser(res);
+            let fiteredData = res.filter(user => user.name.toLowerCase().includes(text.toLowerCase()));
+            setUser(fiteredData);
         }
         fetchData();
-    }, []);
+    }, [text]);
 
   return (
     <>

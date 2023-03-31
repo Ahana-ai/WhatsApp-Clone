@@ -1,4 +1,7 @@
 import { Box, Typography, styled } from "@mui/material";
+import { useContext } from "react";
+import { AccountContext } from "../../context/AcountProvider";
+import { setConversation } from "../../service/api";
 
 const Component = styled(Box)`
   display: flex;
@@ -16,9 +19,16 @@ const Image = styled('img')({
 });
 
 const OneCoversation = ({ user }) => {
+  const { setPerson, account } = useContext(AccountContext);
+
+  const getChat = async () => {
+    setPerson(user);
+    await setConversation({ senderId: account.sub, revieverId: user.sub })
+  };
+
   return (
     <>
-    <Component>
+    <Component onClick={() => getChat()}>
         <Box>
             <Image src={user.picture} alt="dp" />
         </Box>
