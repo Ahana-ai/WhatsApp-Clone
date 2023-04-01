@@ -2,6 +2,7 @@ import { Box, InputBase, styled } from "@mui/material";
 import EmojiEmotionsOutlinedIcon from '@mui/icons-material/EmojiEmotionsOutlined';
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import MicOutlinedIcon from '@mui/icons-material/MicOutlined';
+import { useState } from "react";
 
 const Container = styled(Box)`
     height: 50px;
@@ -34,7 +35,7 @@ const ClipIcon = styled(AttachFileOutlinedIcon)`
     transform: rotate(55deg);
 `;
 
-const Footer = () => {
+const Footer = ({ sendText, setValue, value }) => {
   return (
     <>
         <Container>
@@ -43,6 +44,11 @@ const Footer = () => {
             <SearchBox>
                 <InputField
                     placeholder="Type a message"
+                    onChange={(e) => setValue(e.target.value)}
+                    // On pressing Enter the msg should be saved in db
+                    onKeyPress={(e) => sendText(e)}
+                    // To change the value to the state
+                    value={value}
                 />
             </SearchBox>
             <MicOutlinedIcon />

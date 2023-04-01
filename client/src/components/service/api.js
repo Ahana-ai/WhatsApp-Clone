@@ -34,8 +34,34 @@ export const getUser = async () => {
  */
 export const setConversation = async (data) => {
     try {
-        await axios.post(`${url}/conversation/add`, data)
+        await axios.post(`${url}/conversation/add`, data);
     } catch (error) {
         console.log(`Error while calling setConversation API`, error);
+    }
+}
+
+/**
+ * @method getConversation
+ * @description To Get the conversation id from the db using the senderId and recieverId
+ */
+export const getConversation = async (users) => {
+    try {
+        let response = await axios.post(`${url}/conversation/get`, users);
+        console.log(users, 'users');
+        return response.data;
+    } catch (error) {
+        console.log('Error while calling getConversation API ', error);
+    }
+}
+
+/**
+ * @method newMessage
+ * @description To store msg from input field into db when enter is clicked
+ */
+export const newMessage = async (message) => {
+    try {
+        await axios.post(`${url}/message.add`, message);
+    } catch (error) {
+        console.log('Error while calling newMessage API', error);
     }
 }

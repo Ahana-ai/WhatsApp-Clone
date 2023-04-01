@@ -1,5 +1,5 @@
 import { Box, Typography, styled } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AccountContext } from "../../context/AcountProvider";
 import { setConversation } from "../../service/api";
 

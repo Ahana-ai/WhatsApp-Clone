@@ -27,7 +27,7 @@ const Conversations = ({ text }) => {
     useEffect(() => {
         const fetchData = async () => {
             let res = await getUser();
-            console.log(res, 'ressss');
+            // console.log(res, 'ressss');
             //To filter data in the search box using Js functions
             let fiteredData = res.filter(user => user.name.toLowerCase().includes(text.toLowerCase()));
             //Setting the conversation list to view after fetching it from the database using the api getUser

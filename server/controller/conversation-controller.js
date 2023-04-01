@@ -10,19 +10,35 @@ class ConversationController {
     async newConversation (req, res) {
         try {
             const senderId = req.body.senderId;
-            const recieverId = req.body.recieverId;
+            const receiverId = req.body.receiverId;
 
-            const exist = await Conversation.findOne({ members: { $all: [senderId, recieverId] } });
+            const exist = await Conversation.findOne({ members: { $all: [senderId, receiverId] } });
 
             if(exist)
                 return res.status(200).json('Conversation already exists');
             
             //If convo doesn't exist, we need to create a new one
             const newConversation = new Conversation({
-                members : [ senderId, recieverId ]
+                members : [ senderId, receiverId ]
             })
             await newConversation.save();
             return res.status(200).json('Conversation saved successfully!');
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    };
+
+    /**
+     * @method getConversation
+     * @description To Get the conversation id from the db using the senderId and receiverId
+     */
+    async getConversation (req, res) {
+        try {
+            const senderId = req.body.senderId;
+            const receiverId = req.body.receiverId;
+
+            let conversation = await Conversation.findOne({ members: { $all: [senderId, receiverId] } });
+            return res.status(200).json(conversation);
         } catch (error) {
             return res.status(500).json(error);
         }
