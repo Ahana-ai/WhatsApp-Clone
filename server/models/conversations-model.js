@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const ConversationSchema = new mongoose.Schema({
     members: {
-        //Storing senderId & recieverId
+        //Storing senderId & receiverId
         type: Array
     },
     message: {

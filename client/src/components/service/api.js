@@ -42,12 +42,12 @@ export const setConversation = async (data) => {
 
 /**
  * @method getConversation
- * @description To Get the conversation id from the db using the senderId and recieverId
+ * @description To Get the conversation id from the db using the senderId and receiverId
  */
 export const getConversation = async (users) => {
     try {
         let response = await axios.post(`${url}/conversation/get`, users);
-        console.log(users, 'users');
+        console.log(users, 'u');
         return response.data;
     } catch (error) {
         console.log('Error while calling getConversation API ', error);
@@ -63,5 +63,18 @@ export const newMessage = async (message) => {
         await axios.post(`${url}/message.add`, message);
     } catch (error) {
         console.log('Error while calling newMessage API', error);
+    }
+}
+
+/**
+ * @method getMessage
+ * @description To fetch the msgs from the db
+ */
+export const getMessage = async (id) => {
+    try {
+        let res = await axios.get(`${url}/message/get/${id}`);
+        return res.data;
+    } catch (error) {
+        console.log('Error while calling getMessage API', error);
     }
 }

@@ -13,13 +13,13 @@ const ChatBox = () => {
     //State to store the last message on the left side below name
     const [ conversation, setConversation ] = useState({});
 
-    // Get the conversation id from the db using the senderId and recieverId
+    // Get the conversation id from the db using the senderId and receiverId
     useEffect(() => {
         const getConversationDetails = async () => {
-            console.log(person.sub, 'ppp');
-            let data = await getConversation({ senderId: account.sub, recieverId: person.sub });
-            console.log(data, 'dataaaa');
+            let data = await getConversation({ senderId: account.sub, receiverId: person.sub });
+            console.log(data, 'dataa');
             setConversation(data);
+            console.log(conversation, 'ccc');
         }
         getConversationDetails();
     }, [person.sub]);

@@ -14,5 +14,6 @@ router.post('/conversation/get', ConversationController.getConversation);
 
 //Message
 router.post('/message.add', MessageController.newMessage);
+router.get('/message/get/:id', MessageController.getMessage);
 
 export default router;

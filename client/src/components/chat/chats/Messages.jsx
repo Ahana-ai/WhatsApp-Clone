@@ -1,8 +1,8 @@
 import { Box, styled } from "@mui/material"
 import Footer from "./Footer";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AccountContext } from '../../context/AcountProvider'
-import { newMessage } from "../../service/api";
+import { getMessage, newMessage } from "../../service/api";
 
 const Component = styled(Box)`
     background-image: url(${'https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'});
@@ -15,6 +15,17 @@ const Wrapper = styled(Box)`
 `;
 
 const Messages = ({ person, conversation }) => {
+  
+  // To fetch all the msgs in the container as the component loads using getMessage API
+  useEffect(() => {
+    const getMessageDetails = async () => {
+      let data = await getMessage(conversation._id);
+      console.log('d:: --> ',data);
+    }
+    // conversation._id && getMessageDetails();
+    getMessageDetails();
+    // if(conversation._id) getMessageDetails();
+  }, [person._id])
 
   //State to store the msgs in the input field 
   const [ value, setValue ] = useState('');
@@ -42,6 +53,7 @@ const Messages = ({ person, conversation }) => {
       setValue('');
     }
   }
+
 
   return (
     <>
