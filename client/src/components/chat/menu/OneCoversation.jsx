@@ -10,12 +10,12 @@ const Component = styled(Box)`
   cursor: pointer;
 `;
 
-const Image = styled('img')({
+const Image = styled("img")({
   height: 50,
   width: 50,
-  borderRadius: '50%',
-  padding: '0 14px',
-  objectFit: 'cover',
+  borderRadius: "50%",
+  padding: "0 14px",
+  objectFit: "cover",
 });
 
 const OneCoversation = ({ user }) => {
@@ -24,23 +24,25 @@ const OneCoversation = ({ user }) => {
   //Function to isolate different chats so that messages don't mix using setConversation post api
   const getChat = async () => {
     setPerson(user);
-    await setConversation({ senderId: account.sub, revieverId: user.sub })
+    await setConversation({ senderId: account.sub, receiverId: user.sub });
   };
+
+  console.log({ senderId: account.sub, receiverId: user.sub });
 
   return (
     <>
-    <Component onClick={() => getChat()}>
+      <Component onClick={() => getChat()}>
         <Box>
-            <Image src={user.picture} alt="dp" />
+          <Image src={user.picture} alt="dp" />
         </Box>
         <Box>
           <Box>
-              <Typography>{user.name}</Typography>
+            <Typography>{user.name}</Typography>
           </Box>
         </Box>
-    </Component>
+      </Component>
     </>
-  )
-}
+  );
+};
 
 export default OneCoversation;
