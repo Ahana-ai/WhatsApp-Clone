@@ -2,7 +2,8 @@ import { Box, InputBase, styled } from "@mui/material";
 import EmojiEmotionsOutlinedIcon from '@mui/icons-material/EmojiEmotionsOutlined';
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import MicOutlinedIcon from '@mui/icons-material/MicOutlined';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { uploadFile } from "../../service/api";
 
 const Container = styled(Box)`
     height: 50px;
@@ -33,14 +34,47 @@ const InputField = styled(InputBase)`
 
 const ClipIcon = styled(AttachFileOutlinedIcon)`
     transform: rotate(55deg);
+    cursor: pointer;
 `;
 
-const Footer = ({ sendText, setValue, value }) => {
+const Footer = ({ sendText, setValue, value, file, setFile, setImage }) => {
+
+    // To send the files attached to db as it is sent
+    useEffect(() => {
+        const getImage = async () => {
+            if (file) {
+                const data = new FormData();
+                data.append("name", file.name);
+                data.append("file", file);
+
+                const response = await uploadFile(data);
+                setImage(response.data);
+            }
+        }
+        getImage();
+    }, [file]);
+
+
+    const onFileChange = (e) => {
+        // console.log(e);
+        // calling the 0th position of the files array that is called by the event
+        setValue(e.target.files[0].name);
+        setFile(e.target.files[0]);
+    }
+
   return (
     <>
         <Container>
             <EmojiEmotionsOutlinedIcon />
-            <ClipIcon/>
+            <label htmlFor="attachment">
+                <ClipIcon/>
+            </label>
+            <input
+                type="file" 
+                id="attachment"
+                style={{ display: "none" }}
+                onChange={(e)=>{onFileChange(e)}}
+            />
             <SearchBox>
                 <InputField
                     placeholder="Type a message"

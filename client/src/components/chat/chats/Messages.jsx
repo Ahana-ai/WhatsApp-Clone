@@ -29,6 +29,12 @@ const Messages = ({ person, conversation }) => {
   // State to toggle if msg is being sent rn, if it is true it will call the useEffect or else it will not
   const [ newMsgFlag, setNewMsgFlag ] = useState(false);
 
+  // State to hold the attachment files before sending
+  const [ file, setFile ] = useState();
+
+  // State to hold the images
+  const [ image, setImage ] = useState();
+
   const { account } = useContext(AccountContext);
 
   console.log(conversation);
@@ -49,25 +55,43 @@ const Messages = ({ person, conversation }) => {
     // const code = e.keyCode || e.which;
     const code = e.code;
     // console.log(code);
+
+    // if(!value) return;
+
     if (code === "Enter") {
       console.log(value);
-      let message = {
-        senderId: account.sub,
-        receiverId: person.sub,
-        conversationId: conversation._id,
-        type: "text",
-        text: value,
-      };
+      let message = {};
+        if (!file) {
+            message = {
+                senderId: account.sub,
+                receiverId: person.sub,
+                conversationId: conversation._id,
+                type: "text",
+                text: value
+            };
+        } else {
+            message = {
+                senderId: account.sub,
+                conversationId: conversation._id,
+                receiverId: person.sub,
+                type: "file",
+                text: image
+            };
+          }
       console.log(message, "mm");
       await newMessage(message);
 
       // Emptying the text area in the footer after msg being stored in Db
       setValue("");
+
+      setFile();
+      setImage("");
+
       // Toggling the newMsgFlag to set it true so it would call the useEffect to display the messages
       setNewMsgFlag((prev) => {
         !prev
       });
-    }
+    };
   };
 
   return (
@@ -85,7 +109,14 @@ const Messages = ({ person, conversation }) => {
             }
 
         </Wrapper>
-        <Footer sendText={sendText} setValue={setValue} value={value} />
+        <Footer 
+          sendText={sendText} 
+          setValue={setValue} 
+          value={value} 
+          file={file}
+          setFile={setFile}
+          // setImage={setImage}
+        />
       </Component>
     </>
   );
