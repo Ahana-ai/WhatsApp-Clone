@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 import Footer from "./Footer";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { AccountContext } from "../../context/AcountProvider";
 import { getMessage, newMessage } from "../../service/api";
 import Msg from "./Msg";
@@ -47,6 +47,12 @@ const Messages = ({ person, conversation }) => {
     };
     if (conversation?._id) getMessageDetails();
   }, [person._id, conversation._id, newMsgFlag]);
+
+  // UseEffect to bring the scrollbar to the bottom of the chat which as default opens to the top of the chat
+  const scrollRef = useRef();
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ transition: "smooth" })
+}, [msg]);
 
 
   //Function to know which key has been pressed and accordingly store the msg in db when enter is clicked on the keyboard.
@@ -101,7 +107,7 @@ const Messages = ({ person, conversation }) => {
             {
               msg && msg.map((msg) => {
                 return (
-                  <StyledMsg>
+                  <StyledMsg ref={scrollRef}>
                     <Msg message={msg}/>
                   </StyledMsg>
                 )

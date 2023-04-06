@@ -109,6 +109,7 @@ const ImageMessage = ({ message }) => {
               marginRight: 10,
               border: "1px solid gray",
               borderRadius: "50%",
+              cursor: "pointer"
             }}
             fontSize="small"
             onClick={(e) => {downloadMedia(e, message.text)}}
