@@ -86,6 +86,7 @@ const ImageMessage = ({ message }) => {
             <Box style={{ display: "flex" }}>
               <img src={iconPDF} alt="pdf-icon" style={{ width: 80 }} />
               <Typography style={{ fontSize: 14 }}>
+                 {/* To remove the localhost from the name display */}
                 {message.text.split("/").pop()}
               </Typography>
             </Box>
