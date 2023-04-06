@@ -4,3 +4,14 @@ export const formatDate = ( data ) => {
 
     return `${ hours < 10 ? '0' + hours : hours } : ${ minutes < 10 ? '0' + minutes : minutes }`
 }
+
+
+export const downloadMedia = (event, message) => {
+    event.preventDefault();
+
+    try {
+        
+    } catch (error) {
+        
+    }
+}

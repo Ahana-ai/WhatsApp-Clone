@@ -33,7 +33,7 @@ const Messages = ({ person, conversation }) => {
   const [ file, setFile ] = useState();
 
   // State to hold the images
-  const [ image, setImage ] = useState();
+  const [ image, setImage ] = useState("");
 
   const { account } = useContext(AccountContext);
 
@@ -56,7 +56,7 @@ const Messages = ({ person, conversation }) => {
     const code = e.code;
     // console.log(code);
 
-    // if(!value) return;
+    if(!value) return;
 
     if (code === "Enter") {
       console.log(value);
@@ -115,7 +115,7 @@ const Messages = ({ person, conversation }) => {
           value={value} 
           file={file}
           setFile={setFile}
-          // setImage={setImage}
+          setImage={setImage}
         />
       </Component>
     </>
