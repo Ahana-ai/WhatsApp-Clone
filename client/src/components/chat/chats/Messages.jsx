@@ -1,6 +1,7 @@
 import { Box, styled } from "@mui/material";
 import Footer from "./Footer";
 import { useContext, useEffect, useState, useRef } from "react";
+import { io } from "socket.io-client";
 import { AccountContext } from "../../context/AcountProvider";
 import { getMessage, newMessage } from "../../service/api";
 import Msg from "./Msg";
@@ -35,7 +36,10 @@ const Messages = ({ person, conversation }) => {
   // State to hold the images
   const [ image, setImage ] = useState("");
 
-  const { account } = useContext(AccountContext);
+  // State to hold the incoming messages => single msg is coming
+  const [incomingMessage, setIncomingMessage] = useState();
+
+  const { account, socket } = useContext(AccountContext);
 
   console.log(conversation);
   // To fetch all the msgs in the container as the component loads using getMessage API
@@ -54,6 +58,25 @@ const Messages = ({ person, conversation }) => {
     scrollRef.current?.scrollIntoView({ transition: "smooth" })
 }, [msg]);
 
+
+// To get the messages in real-time
+useEffect(() => {
+  socket.current.on('getMessage', data => {
+    setIncomingMessage({
+        ...data,
+        createdAt: Date.now()
+    })
+})
+},[]);
+
+// To add the incomingMessages to the messages in the convo as new msg is sent
+useEffect(() => {
+  incomingMessage && conversation?.members?.includes(incomingMessage.senderId) && setMsg(
+    (prev) =>{ 
+      return  [...prev, incomingMessage] 
+    }
+  )
+}, [incomingMessage, conversation]);
 
   //Function to know which key has been pressed and accordingly store the msg in db when enter is clicked on the keyboard.
   const sendText = async (e) => {
@@ -84,6 +107,10 @@ const Messages = ({ person, conversation }) => {
                 text: image
             };
           }
+
+          // Send messages in real-time
+          socket.current?.emit("sendMessage", message);
+
       console.log(message, "mm");
       await newMessage(message);
 

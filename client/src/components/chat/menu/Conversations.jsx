@@ -42,8 +42,8 @@ const Conversations = ({ text }) => {
 
         // Getting the array of active users from socket.io
         socket.current.on("getUsers", users => {
-            // setActiveUsers([...users]);
-            setActiveUsers(users);
+            setActiveUsers([...users]);
+            // setActiveUsers(users);
         });
     }, [account]);
 

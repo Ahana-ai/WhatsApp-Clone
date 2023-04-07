@@ -45,6 +45,10 @@ const ChatHeader = ({ person }) => {
     // To show the online/offline status of users
     const { activeUsers } = useContext(AccountContext);
 
+    activeUsers.map((user, index) => {
+        console.log(index , user);
+    })
+
   return (
     <Header>
 
