@@ -60,7 +60,6 @@ export const getConversation = async (users) => {
 export const newMessage = async (message) => {
   try {
     await axios.post(`${url}/message/add`, message);
-    console.log(message);
   } catch (error) {
     console.log("Error while calling newMessage API", error);
   }
@@ -89,4 +88,4 @@ export const uploadFile = async (data) => {
   } catch (error) {
     console.log("Error while calling uploadFile API", error);
   }
-}
+};

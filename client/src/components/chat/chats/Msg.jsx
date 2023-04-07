@@ -46,10 +46,10 @@ const Msg = ({ message }) => {
 
   return (
     <>
-      {account.sub === message.senderId ? (
+      {account?.sub === message?.senderId ? (
         <OwnMsg>
           {/* Check to see if the file is image or text and sidplay it accordingly */}
-          {message.type === "file" ? (
+          {message?.type === "file" ? (
             <ImageMessage message={message} />
           ) : (
             <TextMessage message={message} />
@@ -57,7 +57,7 @@ const Msg = ({ message }) => {
         </OwnMsg>
       ) : (
         <RecievedMsg>
-          {message.type === "file" ? (
+          {message?.type === "file" ? (
             <ImageMessage message={message} />
           ) : (
             <TextMessage message={message} />
@@ -71,8 +71,8 @@ const Msg = ({ message }) => {
 const TextMessage = ({ message }) => {
   return (
     <>
-      <Text>{message.text}</Text>
-      <Time>{formatDate(message.createdAt)}</Time>
+      <Text>{message?.text}</Text>
+      <Time>{formatDate(message?.createdAt)}</Time>
     </>
   );
 };
@@ -81,40 +81,40 @@ const ImageMessage = ({ message }) => {
   return (
     <>
       <Box style={{ position: "relative" }}>
-        {
-          message.text.includes('.pdf') ? (
-            <Box style={{ display: "flex" }}>
-              <img src={iconPDF} alt="pdf-icon" style={{ width: 80 }} />
-              <Typography style={{ fontSize: 14 }}>
-                 {/* To remove the localhost from the name display */}
-                {message.text.split("/").pop()}
-              </Typography>
-            </Box>
-          ) : (
-            <img
-              style={{
-                width: "100%",
-                minWidth: 50,
-                height: "100%",
-                objectFit: "cover",
-              }}
-              src={message.text}
-              alt={message.text}
-            />
-          )
-        }
+        {message.text.includes(".pdf") ? (
+          <Box style={{ display: "flex" }}>
+            <img src={iconPDF} alt="pdf-icon" style={{ width: 80 }} />
+            <Typography style={{ fontSize: 14 }}>
+              {/* To remove the localhost from the name display */}
+              {message.text.split("/").pop()}
+            </Typography>
+          </Box>
+        ) : (
+          <img
+            style={{
+              width: "100%",
+              minWidth: 50,
+              height: "100%",
+              objectFit: "cover",
+            }}
+            src={message?.text}
+            alt={message?.text}
+          />
+        )}
         <Time style={{ position: "absolute", bottom: 0, right: 0 }}>
           <GetAppIcon
             style={{
               marginRight: 10,
               border: "1px solid gray",
               borderRadius: "50%",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
             fontSize="small"
-            onClick={(e) => {downloadMedia(e, message.text)}}
+            onClick={(e) => {
+              downloadMedia(e, message?.text);
+            }}
           />
-          {formatDate(message.createdAt)}
+          {formatDate(message?.createdAt)}
         </Time>
       </Box>
     </>

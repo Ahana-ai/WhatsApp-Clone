@@ -12,7 +12,7 @@ const HeaderMenu = ({ setOpenDrawer }) => {
   //State to check the Menu opening in the header of left component
   const [open, setOpen] = useState(false);
   const handleClick = (event) => {
-    setOpen(event.currentTarget);
+    setOpen(event?.currentTarget);
   };
   const handleClose = () => {
     setOpen(null);
@@ -20,7 +20,10 @@ const HeaderMenu = ({ setOpenDrawer }) => {
 
   return (
     <>
-      <MoreVertOutlinedIcon onClick={handleClick} style={{cursor: 'pointer  '}} />
+      <MoreVertOutlinedIcon
+        onClick={handleClick}
+        style={{ cursor: "pointer  " }}
+      />
 
       <Menu
         anchorEl={open}

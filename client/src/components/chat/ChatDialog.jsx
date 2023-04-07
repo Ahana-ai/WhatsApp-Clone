@@ -18,19 +18,19 @@ const dialogStyle = {
 };
 
 const Component = styled(Box)`
-    display: flex;
-`
+  display: flex;
+`;
 
 const LeftComponent = styled(Box)`
-    min-width: 450px;
-`
+  min-width: 450px;
+`;
 
 const RightComponent = styled(Box)`
-    min-width: 300px;
-    width: 73%;
-    height: 100%;
-    border-left: 1px solid rgba(0, 0, 0, 0.14)
-`
+  min-width: 300px;
+  width: 73%;
+  height: 100%;
+  border-left: 1px solid rgba(0, 0, 0, 0.14);
+`;
 
 const ChatDialog = () => {
   const { person } = useContext(AccountContext);
@@ -41,21 +41,20 @@ const ChatDialog = () => {
         open={true}
         PaperProps={{ sx: dialogStyle }}
         hideBackdrop={true}
-        maxWidth={'md'}
+        maxWidth={"md"}
       >
         {/* Parent Component */}
         <Component>
-            {/* Left child Component */}
-            <LeftComponent>
-                <Menu/>
-            </LeftComponent>
-            {/* Right child Component */}
-            <RightComponent>
-              {/* To check if to view the chat or just the empty component */}
-                { Object.keys(person).length ? <ChatBox /> : <EmptyChat /> }
-            </RightComponent>
+          {/* Left child Component */}
+          <LeftComponent>
+            <Menu />
+          </LeftComponent>
+          {/* Right child Component */}
+          <RightComponent>
+            {/* To check if to view the chat or just the empty component */}
+            {Object.keys(person).length ? <ChatBox /> : <EmptyChat />}
+          </RightComponent>
         </Component>
-
       </Dialog>
     </>
   );

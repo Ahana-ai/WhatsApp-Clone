@@ -45,19 +45,19 @@ const ChatHeader = ({ person }) => {
     // To show the online/offline status of users
     const { activeUsers } = useContext(AccountContext);
 
-    activeUsers.map((user, index) => {
+    activeUsers?.map((user, index) => {
         console.log(index , user);
     })
 
   return (
     <Header>
 
-        <Image src={person.picture} alt="dp" />
+        <Image src={person?.picture} alt="dp" />
         <Box>
-            <Name>{person.name}</Name>
+            <Name>{person?.name}</Name>
             <Status>
                 {
-                    activeUsers.find(user => user.sub === person.sub) ? "Online" : "Offline"
+                    activeUsers.find(user => user?.sub === person?.sub) ? "Online" : "Offline"
                 }
             </Status>
         </Box>

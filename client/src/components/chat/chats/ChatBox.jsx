@@ -24,7 +24,7 @@ const ChatBox = () => {
       setConversation({ ...data });
     };
     getConversationDetails();
-  }, [person.sub]);
+  }, [person?.sub]);
 
   return (
     <>

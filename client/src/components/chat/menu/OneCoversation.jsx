@@ -45,23 +45,23 @@ const OneCoversation = ({ user }) => {
   useEffect(() => {
     const getConversationDetails = async () => {
       const data = await getConversation({
-        senderId: account.sub,
-        receiverId: user.sub
+        senderId: account?.sub,
+        receiverId: user?.sub,
       });
       setMessage({
         text: data?.message,
-        timeStamp: data?.updatedAt
+        timeStamp: data?.updatedAt,
       });
-    }
+    };
     getConversationDetails();
-  }, [newMsgFlag])
+  }, [newMsgFlag]);
 
-  console.log('woohooo' , message);
+  console.log("woohooo", message);
 
   //Function to isolate different chats so that messages don't mix using setConversation post api
   const getChat = async () => {
     setPerson(user);
-    await setConversation({ senderId: account.sub, receiverId: user.sub });
+    await setConversation({ senderId: account?.sub, receiverId: user?.sub });
   };
 
   console.log({ senderId: account.sub, receiverId: user.sub });
@@ -70,23 +70,18 @@ const OneCoversation = ({ user }) => {
     <>
       <Component onClick={() => getChat()}>
         <Box>
-          <Image src={user.picture} alt="dp" />
+          <Image src={user?.picture} alt="dp" />
         </Box>
         <Box style={{ width: "100%" }}>
           <Container>
-            <Typography>{user.name}</Typography>
-            {
-              message.text && 
-              <TimeStamp>
-                {formatDate(message?.timeStamp)}
-              </TimeStamp>
-            }
+            <Typography>{user?.name}</Typography>
+            {message.text && (
+              <TimeStamp>{formatDate(message?.timeStamp)}</TimeStamp>
+            )}
           </Container>
           <Box>
             <Text>
-              {
-                message?.text?.includes('localhost') ? 'media' : message?.text
-              }
+              {message?.text?.includes("localhost") ? "media" : message?.text}
             </Text>
           </Box>
         </Box>
