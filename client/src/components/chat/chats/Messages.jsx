@@ -27,9 +27,6 @@ const Messages = ({ person, conversation }) => {
   // State to call the msgs for display
   const [ msg, setMsg ] = useState([]);
 
-  // State to toggle if msg is being sent rn, if it is true it will call the useEffect or else it will not
-  const [ newMsgFlag, setNewMsgFlag ] = useState(false);
-
   // State to hold the attachment files before sending
   const [ file, setFile ] = useState();
 
@@ -39,7 +36,7 @@ const Messages = ({ person, conversation }) => {
   // State to hold the incoming messages => single msg is coming
   const [incomingMessage, setIncomingMessage] = useState();
 
-  const { account, socket } = useContext(AccountContext);
+  const { account, socket, setNewMsgFlag, newMsgFlag } = useContext(AccountContext);
 
   console.log(conversation);
   // To fetch all the msgs in the container as the component loads using getMessage API

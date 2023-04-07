@@ -9,6 +9,9 @@ const AcountProvider = ({ children }) => {
     const [account, setAccount] = useState();
     //State to store the specific chat selected to be openned on the right
     const [person, setPerson] = useState({});
+    // State to toggle if msg is being sent rn, if it is true it will call the useEffect or else it will not
+    const [ newMsgFlag, setNewMsgFlag ] = useState(false);
+
 
     // State to set the array of active users
     const [activeUsers, setActiveUsers] = useState([]);
@@ -28,7 +31,9 @@ const AcountProvider = ({ children }) => {
           setPerson,
           socket,
           activeUsers,
-          setActiveUsers
+          setActiveUsers,
+          newMsgFlag,
+          setNewMsgFlag
         }}>
             {children}
         </AccountContext.Provider>
