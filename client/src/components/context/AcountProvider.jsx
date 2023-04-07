@@ -10,6 +10,9 @@ const AcountProvider = ({ children }) => {
     //State to store the specific chat selected to be openned on the right
     const [person, setPerson] = useState({});
 
+    // State to set the array of active users
+    const [activeUsers, setActiveUsers] = useState([]);
+
     const socket = useRef();
 
     useEffect(() => {
@@ -19,11 +22,13 @@ const AcountProvider = ({ children }) => {
   return (
     <>
         <AccountContext.Provider value={{
-            socket,
-            account,
-            setAccount,
-            person,
-            setPerson
+          account,
+          setAccount,
+          person,
+          setPerson,
+          socket,
+          activeUsers,
+          setActiveUsers
         }}>
             {children}
         </AccountContext.Provider>

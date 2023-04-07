@@ -22,7 +22,7 @@ const Conversations = ({ text }) => {
     //To store the users for all the conversation list in an array format
     const [users, setUser] = useState([]);
 
-    const { account } = useContext(AccountContext);
+    const { account, socket, setActiveUsers } = useContext(AccountContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,6 +35,17 @@ const Conversations = ({ text }) => {
         }
         fetchData();
     }, [text]); //Changing the conversation list according to the input in search box
+
+    // Hitting the socket.io when a conversation is clicked to open to get which user is online
+    useEffect(() => {
+        socket.current.emit("addUsers", account);
+
+        // Getting the array of active users from socket.io
+        socket.current.on("getUsers", users => {
+            // setActiveUsers([...users]);
+            setActiveUsers(users);
+        });
+    }, [account]);
 
   return (
     <>
