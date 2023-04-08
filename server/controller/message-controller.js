@@ -17,13 +17,14 @@ class MessageController {
         members: { $all: [senderId, receiverId] },
       });
 
-      console.log(req.body);
+      console.log(req.body, "bodyyyy");
       console.log(exist);
 
       if (!exist) {
         //If convo doesn't exist, we need to create a new one
         const newConversation = new Conversation({
           members: [senderId, receiverId],
+          message: req.body.text,
         });
         await newConversation.save();
         console.log("Convo Created");
@@ -37,12 +38,16 @@ class MessageController {
           conversationId: convo._id,
         });
         await newMessage.save();
+        console.log(convo.message);
       } else {
         const newMessage = new Message({
           ...req.body,
           conversationId: exist._id,
         });
         await newMessage.save();
+        await Conversation.findByIdAndUpdate(req.body.conversationId, {
+          message: req.body.text,
+        });
       }
       return res.status(200).json("Message has been sent successfully!");
     } catch (error) {
