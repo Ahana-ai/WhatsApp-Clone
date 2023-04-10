@@ -2,7 +2,7 @@
 import grid from "gridfs-stream";
 import mongoose from 'mongoose'
 
-const url = "http://localhost:2000";
+// const URL = "http://localhost:2000";
 
 let gfs, gridFsBucket;
 const conn = mongoose.connection;
@@ -20,6 +20,7 @@ conn.once("open", () => {
  * @description To upload file in mongodb
  */
 export const uploadFile = async ( req, res ) => {
+    const URL = process.env.BASE_URL;
     try {
         // If file is not there
         if(!req.file){
@@ -29,7 +30,8 @@ export const uploadFile = async ( req, res ) => {
         // If file found, it will be upoaded in mongodb, so return the url to access the file
         console.log(req.file.filename);
         //Creating an url for the file to be found or downloaded later
-        const imageurl = `${url}/file/${req.file.filename}`;
+        console.log(URL, 'url');
+        const imageurl = `${URL}/file/${req.file.filename}`;
 
         return res.status(200).json(imageurl);
     } catch (error) {
