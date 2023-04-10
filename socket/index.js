@@ -2,7 +2,9 @@ import { Server } from "socket.io";
 
 const io = new Server(8000, {
   cors: {
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
+    origin: "https://ahanawhatsappclone.netlify.app/",
+
   },
 });
 
