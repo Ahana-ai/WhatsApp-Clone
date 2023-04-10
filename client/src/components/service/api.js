@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const url = "http://localhost:2000";
+// const url = "http://localhost:2000";
+const url = "https://whatsappclonebackend-xaj0.onrender.com"
 
 /**
  * @method addUser
